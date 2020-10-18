@@ -27,6 +27,7 @@ const initialRender = () => {
         <option class="filter-by" value="5" name="five">5 star+</option>
       </select>
   </div>
+  <section id="list-container"></section>
   `;
 
   return template;
@@ -39,8 +40,9 @@ const formTemplate = `<form id="submit-bookmark">
 <input required type="url" id="url" placeholder="e.g. https://www.test.com" />
 <label for="desc">Description</label>
 <input type="text" id="desc" placeholder="e.g. My Wishlist" />
-<label for="rating" placeholder="1"></label>
+<label for="rating" placeholder="1">Rating</label>
 <input required type="number" id="rating" min="1" max="5" />
+<br />
 <button type="submit" id="submit">Submit</button>
 <button type="button" id="cancel">Cancel</button>
 </form>`;
@@ -90,7 +92,7 @@ const render = function () {
   // Filter item list if store prop is true by item.checked === false
   let html = '';
   if (!store.adding) {
-    $('.controlCenter').html(initialRender());
+    $('main').html(initialRender());
     const bookmarks = getBookmarks();
     console.log(bookmarks);
     if (bookmarks.length < 1) {
